@@ -12,6 +12,7 @@
 </head>
 
 <body ng-app="RealEstateApp" ng-controller="RealEstateController as vm">
+    <h2>Real Estate Listings</h2>
     <h3>New Listing</h3>
     <section class="container">
         <h1></h1>
@@ -34,6 +35,8 @@
         </form>
         <hr>
     </section>
+
+
 
     <hr>
     <h3>New Rental</h3>
@@ -59,7 +62,39 @@
         <hr>
     </section>
 
-    <h1>Real Estate Listings</h1>
+    <hr>
+    <h2>Rentals</h2>
+    <section class="row">
+        <div class="col-md-12">
+            <div ng-repeat="rental in vm.rentals" class=" col-md-3 well">
+
+                <h3 class="text-danger">{{ $index + 1 }}. Rent: ${{rental.rent | number}}</h3>
+                <p><strong>Square Feet:</strong> {{rental.sqft}} ft<sup>2</sup></p>
+                <p><strong>City: </strong> {{rental.city}}</p>
+
+                <!-- Angular knows which 'person' object we mean when we click on the buttons -->
+                <!-- <button ng-click="vm.updateRental(rental)" class="btn btn-success">Update</button>
+                          <button ng-click="vm.deleteRental(rental._id)" class="btn btn-danger">Delete</button> -->
+            </div>
+        </div>
+    </section>
+
+    <hr>
+    <h2>Listings</h2>
+    <section class="row">
+        <div class="col-md-12 ">
+            <div ng-repeat="listing in vm.listings" class="well col-md-3">
+
+                <h3 class="text-primary">{{ $index + 1 }}. Cost: ${{listing.cost | number}}</h3>
+                <p><strong>Square Feet:</strong> {{listing.sqft}} ft<sup>2</sup></p>
+                <p><strong>City: </strong> {{listing.city}}</p>
+
+                <!-- Angular knows which 'person' object we mean when we click on the buttons -->
+                <!-- <button ng-click="vm.updateRental(rental)" class="btn btn-success">Update</button>
+                              <button ng-click="vm.deleteRental(rental._id)" class="btn btn-danger">Delete</button> -->
+            </div>
+        </div>
+    </section>
     <p>Listings</p>
     <ul ng-repeat="listing in vm.listings">
         <li>{{ listing }}</li>
