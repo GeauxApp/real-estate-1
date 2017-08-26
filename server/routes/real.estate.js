@@ -19,7 +19,7 @@ router.get('/', function (req, res) {
             console.log('find error: ', err);
             res.sendStatus(500);
         } else {
-            result.rental = data;
+            result.rentals = data;
         }
     });
 
@@ -30,7 +30,7 @@ router.get('/', function (req, res) {
             console.log('find error: ', err);
             res.sendStatus(500);
         } else {
-            result.rental = data;
+            result.listings = data;
             res.send(data);
         }
     });
