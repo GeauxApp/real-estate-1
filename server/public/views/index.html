@@ -77,20 +77,27 @@
             </div>
         </div>
     </section>
-
+   
     <hr>
     <h2>Listings</h2>
     <section class="row">
         <div class="col-md-12 ">
             <div ng-repeat="listing in vm.listings.list" class="well col-md-3">
+                <h3 ng-hide="vm.editListingVisible[listing._id]">{{ $index + 1 }}. Cost: ${{ listing.cost | number}}</h3>
+                <div ng-show="vm.editListingVisible[listing._id]"><input type="number" ng-model="listing.cost" /></div>
+                <div ng-hide="vm.editListingVisible[listing._id]"><strong>Square Feet:</strong> {{ listing.sqft }} ft<sup>2</sup></div>
+                <div ng-show="vm.editListingVisible[listing._id]"><input type="number" ng-model="listing.sqft" /></div>
+                <div ng-hide="vm.editListingVisible[listing._id]"><strong>City: </strong> {{ listing.city }}</div>
+                <div ng-show="vm.editListingVisible[listing._id]"><input type="text" ng-model="listing.city" /></div>
 
-                <h3 class="text-primary">{{ $index + 1 }}. Cost: ${{listing.cost | number}}</h3>
+                <!-- <h3 class="text-primary">{{ $index + 1 }}. Cost: ${{listing.cost | number}}</h3>
                 <p><strong>Square Feet:</strong> {{listing.sqft}} ft<sup>2</sup></p>
                 <p><strong>City: </strong> {{listing.city}}</p>
-
+ -->
                 <!-- Angular knows which 'person' object we mean when we click on the buttons -->
-                <!-- <button ng-click="vm.updateRental(rental)" class="btn btn-success">Update</button>
-                              <button ng-click="vm.deleteRental(rental._id)" class="btn btn-danger">Delete</button> -->
+                <button ng-click="vm.editListing(listing)" class="btn btn-info">Edit</button>
+                <button ng-click="vm.updateListing(listing)" class="btn btn-success">Update</button>
+                <!-- <button ng-click="vm.deleteRental(rental._id)" class="btn btn-danger">Delete</button> -->
             </div>
         </div>
     </section>
