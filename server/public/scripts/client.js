@@ -33,9 +33,9 @@ app.controller('RealEstateController', ['$http', function ($http) {
         });
     };
 
-    self.addRental = function (newRental) {
+    self.addRental = function () {
         //console.log('addListing called client.js');
-        $http.post('/realEstate/rental', newRental).then(function (response) {
+        $http.post('/realEstate/rental', self.newRental).then(function (response) {
             console.log(' post response: ', response);
             self.getEstateData();
         });
