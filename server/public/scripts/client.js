@@ -5,6 +5,8 @@ var app = angular.module('RealEstateApp', []);
 
 app.controller('RealEstateController', ['$http', function ($http) {
     var self = this;
+    self.listings;
+    self.rentals;
 
     self.getEstateData = function () {
         $http({
@@ -12,10 +14,10 @@ app.controller('RealEstateController', ['$http', function ($http) {
             url: '/realEstate'
         }).then(function (response) {
             console.log('response from get: ', response);
+            
             self.listings = response.data.listings;
             self.rentals = response.data.rentals;
-            console.log('response from get client side: ', response);
-            
+            console.log('rentals ', self.rentals);
         });
     }
 

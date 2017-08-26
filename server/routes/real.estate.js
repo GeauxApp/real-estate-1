@@ -13,27 +13,28 @@ var Listing = schemas.listingSchema;
 router.get('/', function (req, res) {
     var result = {};
     Rental.find({}, function (err, data) {
-        console.log('real.estate.js get called ');
+        console.log('real.estate.js rental get called ');
 
         if (err) {
             console.log('find error: ', err);
             res.sendStatus(500);
         } else {
             result.rentals = data;
+            Listing.find({}, function (err, data) {
+                console.log('real.estate.js listing get called ');
+
+                if (err) {
+                    console.log('find error: ', err);
+                    res.sendStatus(500);
+                } else {
+                    result.listings = data;
+                    res.send(result);
+                }
+            });
         }
     });
 
-    Listing.find({}, function (err, data) {
-        console.log('real.estate.js get called ');
 
-        if (err) {
-            console.log('find error: ', err);
-            res.sendStatus(500);
-        } else {
-            result.listings = data;
-            res.send(data);
-        }
-    });
 });
 
 module.exports = router;
