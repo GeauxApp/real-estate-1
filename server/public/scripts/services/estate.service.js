@@ -56,6 +56,10 @@ app.service('EstateService', ['$http', function ($http) {
     
     self.updateListing = function(listing){
         self.editListingVisible[listing._id] = false;
+        $http.put('/realEstate/' + listing._id, listing).then(function (response) {
+            console.log('service update response:', response);
+            self.getEstateData();
+        });
     };
 
 }]);
