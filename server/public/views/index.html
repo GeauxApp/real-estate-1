@@ -12,6 +12,53 @@
 </head>
 
 <body ng-app="RealEstateApp" ng-controller="RealEstateController as vm">
+    <h3>New Listing</h3>
+    <section class="container">
+        <h1></h1>
+        <form class="col-md-12" ng-submit="vm.addProperty()">
+            <div class="form-group col-md-6">
+                <label for="cost">Cost</label>
+                <input type="text" class="form-control" ng-model="vm.newListing.cost" placeholder="Cost" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="sqft">Square Feet</label>
+                <input type="text" class="form-control" ng-model="vm.newListing.sqft" placeholder="Square Feet" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="city">City</label>
+                <input type="text" class="form-control" ng-model="vm.newListing.city" placeholder="City" />
+            </div>
+            <div class="col-md-2">
+                <input class="btn btn-primary" type="submit" value="submit">
+            </div>
+        </form>
+        <hr>
+    </section>
+
+    <hr>
+    <h3>New Rental</h3>
+    <section class="container">
+        <h1></h1>
+        <form class="col-md-12" ng-submit="vm.addProperty()">
+            <div class="form-group col-md-6">
+                <label for="rent">Cost</label>
+                <input type="text" class="form-control" ng-model="vm.newRental.rent" placeholder="Rent" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="sqft">Square Feet</label>
+                <input type="text" class="form-control" ng-model="vm.newRental.sqft" placeholder="Square Feet" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="city">City</label>
+                <input type="text" class="form-control" ng-model="vm.newRental.city" placeholder="City" />
+            </div>
+            <div class="col-md-2">
+                <input class="btn btn-primary" type="submit" value="submit">
+            </div>
+        </form>
+        <hr>
+    </section>
+
     <h1>Real Estate Listings</h1>
     <p>Listings</p>
     <ul ng-repeat="listing in vm.listings">
