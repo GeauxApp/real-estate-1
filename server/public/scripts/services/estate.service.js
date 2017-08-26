@@ -6,6 +6,7 @@ app.service('EstateService', ['$http', function ($http) {
     self.newListing = {};
     self.newRental = {};
     self.editListingVisible = {};
+    self.editRentalVisible = {};
     
     ////https://stackoverflow.com/questions/35517899/update-table-row-data-in-angular
 
@@ -47,7 +48,7 @@ app.service('EstateService', ['$http', function ($http) {
 
  
 
-    
+    //modified from https://stackoverflow.com/questions/26459525/how-to-modify-and-update-data-table-row-in-angular-js
     self.editListing = function(listing){
         self.editListingVisible[listing._id] = true;
         console.log('editListingVisible: ', self.editListingVisible);
@@ -56,8 +57,19 @@ app.service('EstateService', ['$http', function ($http) {
     
     self.updateListing = function(listing){
         self.editListingVisible[listing._id] = false;
-        $http.put('/realEstate/' + listing._id, listing).then(function (response) {
+        $http.put('/realEstate/listing' + listing._id, listing).then(function (response) {
             console.log('service update response:', response);
+            self.getEstateData();
+        });
+    };
+
+    self.editRental = function(rental){
+        self.editRentalVisible[rental._id] = true;
+    };
+    
+    self.updateRental = function(rental){
+        self.editRentalVisible[rental._id] = false;
+        $http.put('/realEstate/rental/' + rental._id, rental).then(function (response) {
             self.getEstateData();
         });
     };

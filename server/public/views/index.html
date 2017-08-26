@@ -64,16 +64,19 @@
     <hr>
     <h2>Rentals</h2>
     <section class="row">
-        <div class="col-md-12">
-            <div ng-repeat="rental in vm.rentals.list" class=" col-md-3 well">
-
-                <h3 class="text-danger">{{ $index + 1 }}. Rent: ${{rental.rent | number}}</h3>
-                <p><strong>Square Feet:</strong> {{rental.sqft}} ft<sup>2</sup></p>
-                <p><strong>City: </strong> {{rental.city}}</p>
+        <div class="col-md-12 ">
+            <div ng-repeat="rental in vm.rentals.list" class="well col-md-3">
+                <h3 ng-hide="vm.editRentalVisible[rental._id]">{{ $index + 1 }}. Rent: ${{ rental.rent | number}}</h3>
+                <div ng-show="vm.editRentalVisible[rental._id]"><input type="number" ng-model="rental.rent" /></div>
+                <div ng-hide="vm.editRentalVisible[rental._id]"><strong>Square Feet:</strong> {{ rental.sqft }} ft<sup>2</sup></div>
+                <div ng-show="vm.editRentalVisible[rental._id]"><input type="number" ng-model="rental.sqft" /></div>
+                <div ng-hide="vm.editRentalVisible[rental._id]"><strong>City: </strong> {{ rental.city }}</div>
+                <div ng-show="vm.editRentalVisible[rental._id]"><input type="text" ng-model="rental.city" /></div>
 
                 <!-- Angular knows which 'person' object we mean when we click on the buttons -->
-                <!-- <button ng-click="vm.updateRental(rental)" class="btn btn-success">Update</button>
-                          <button ng-click="vm.deleteRental(rental._id)" class="btn btn-danger">Delete</button> -->
+                <button ng-click="vm.editRental(rental)" class="btn btn-info">Edit</button>
+                <button ng-click="vm.updateRental(rental)" class="btn btn-success">Update</button>
+                <!-- <button ng-click="vm.deleteRental(rental._id)" class="btn btn-danger">Delete</button> -->
             </div>
         </div>
     </section>
@@ -82,6 +85,7 @@
     <h2>Listings</h2>
     <section class="row">
         <div class="col-md-12 ">
+            <!-- modified from https://stackoverflow.com/questions/26459525/how-to-modify-and-update-data-table-row-in-angular-js -->
             <div ng-repeat="listing in vm.listings.list" class="well col-md-3">
                 <h3 ng-hide="vm.editListingVisible[listing._id]">{{ $index + 1 }}. Cost: ${{ listing.cost | number}}</h3>
                 <div ng-show="vm.editListingVisible[listing._id]"><input type="number" ng-model="listing.cost" /></div>

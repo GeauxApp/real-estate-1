@@ -76,14 +76,37 @@ router.post('/rental', function (req, res) {
 });
 
 
-router.put('/:id', function (req, res) {
+router.put('/listing/:id', function (req, res) {
     var id = req.params.id;
-    console.log('real.estate.js put called');
+    console.log('real.estate.js put listing called');
     Listing.findByIdAndUpdate(
         { _id: id },
         {
             $set: {
                 cost: req.body.cost,
+                sqft: req.body.sqft,
+                city: req.body.city
+            }
+        },
+        function (err, data) {
+            if (err) {
+                console.log('update error: ', err);
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(200);
+            }
+        }
+    )
+});
+
+router.put('/rental/:id', function (req, res) {
+    var id = req.params.id;
+    console.log('real.estate.js put rental called');
+    Rental.findByIdAndUpdate(
+        { _id: id },
+        {
+            $set: {
+                rent: req.body.rent,
                 sqft: req.body.sqft,
                 city: req.body.city
             }
