@@ -17,8 +17,8 @@ var rentalSchema = new Schema({
 });
 
 var schemaObject = {};
-schemaObject.listingSchema = mongoose.model('Listing', listingSchema);
-schemaObject.rentalSchema = mongoose.model('Rental', rentalSchema);
+schemaObject.listingSchema = mongoose.model('Listings', listingSchema);
+schemaObject.rentalSchema = mongoose.model('Rentals', rentalSchema);
 
 // export our model
 module.exports = schemaObject;

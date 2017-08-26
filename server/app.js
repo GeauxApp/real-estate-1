@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
 var index = require('./routes/index.js');
-//var realEstate = require('./routes/real.estate.js');
+var realEstate = require('./routes/real.estate.js');
 
 var mongoose = require('mongoose');
 
@@ -13,12 +13,12 @@ app.use(bodyParser.json()); // needed for angular requests
 
 /** ---------- EXPRESS ROUTES ---------- **/
 app.use('/', index);
-//app.use('/realEstate', realEstate);
+app.use('/realEstate', realEstate);
 
 
 /** MONGOOSE CONNECTION **/
 // required
-var databaseUrl = 'mongodb://localhost:27017/betelgeuse';
+var databaseUrl = 'mongodb://localhost:27017/realestate';
 mongoose.connect(databaseUrl, 
 {
     useMongoClient: true
