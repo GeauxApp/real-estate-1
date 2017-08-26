@@ -8,7 +8,6 @@
     <script type="text/javascript" src="/scripts/controllers/estate.controller.js"></script>
     <script type="text/javascript" src="/scripts/services/estate.service.js"></script>"
     <link rel="stylesheet" href="/vendors/bootstrap.css" />
-
 </head>
 
 <body ng-app="RealEstateApp" ng-controller="RealEstateController as vm">
@@ -66,7 +65,7 @@
     <h2>Rentals</h2>
     <section class="row">
         <div class="col-md-12">
-            <div ng-repeat="rental in vm.rentals" class=" col-md-3 well">
+            <div ng-repeat="rental in vm.rentals.list" class=" col-md-3 well">
 
                 <h3 class="text-danger">{{ $index + 1 }}. Rent: ${{rental.rent | number}}</h3>
                 <p><strong>Square Feet:</strong> {{rental.sqft}} ft<sup>2</sup></p>
@@ -83,7 +82,7 @@
     <h2>Listings</h2>
     <section class="row">
         <div class="col-md-12 ">
-            <div ng-repeat="listing in vm.listings" class="well col-md-3">
+            <div ng-repeat="listing in vm.listings.list" class="well col-md-3">
 
                 <h3 class="text-primary">{{ $index + 1 }}. Cost: ${{listing.cost | number}}</h3>
                 <p><strong>Square Feet:</strong> {{listing.sqft}} ft<sup>2</sup></p>
