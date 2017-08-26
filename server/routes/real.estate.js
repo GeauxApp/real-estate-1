@@ -13,7 +13,7 @@ var Listing = schemas.listingSchema;
 router.get('/', function (req, res) {
     var result = {};
     Rental.find({}, function (err, data) {
-        console.log('real.estate.js rental get called ');
+        //console.log('real.estate.js rental get called ');
 
         if (err) {
             console.log('find error: ', err);
@@ -36,14 +36,14 @@ router.get('/', function (req, res) {
 });
 
 router.post('/listing', function (req, res) {
-    console.log('new listing to store: ', req.body);
+    //console.log('new listing to store: ', req.body);
 
     // use model/constructor to make a Mongoose Object
     var newListing = new Listing(req.body);
 
     // insert into our collection
     newListing.save(function (err, data) {
-        console.log('saved listing to the collection: ', data);
+        //console.log('saved listing to the collection: ', data);
         if (err) {
             console.log('save error: ', err);
 
@@ -56,14 +56,14 @@ router.post('/listing', function (req, res) {
 });
 
 router.post('/rental', function (req, res) {
-    console.log('new rental to store: ', req.body);
+    //console.log('new rental to store: ', req.body);
 
     // use model/constructor to make a Mongoose Object
     var newRental = new Rental(req.body);
 
     // insert into our collection
     newRental.save(function (err, data) {
-        console.log('saved rental to the collection: ', data);
+        //console.log('saved rental to the collection: ', data);
         if (err) {
             console.log('save error: ', err);
 
@@ -78,7 +78,7 @@ router.post('/rental', function (req, res) {
 
 router.put('/listing/:id', function (req, res) {
     var id = req.params.id;
-    console.log('real.estate.js put listing called');
+    //console.log('real.estate.js put listing called');
     Listing.findByIdAndUpdate(
         { _id: id },
         {
@@ -101,7 +101,7 @@ router.put('/listing/:id', function (req, res) {
 
 router.put('/rental/:id', function (req, res) {
     var id = req.params.id;
-    console.log('real.estate.js put rental called');
+    //console.log('real.estate.js put rental called');
     Rental.findByIdAndUpdate(
         { _id: id },
         {
@@ -120,6 +120,36 @@ router.put('/rental/:id', function (req, res) {
             }
         }
     )
+});
+
+router.delete('/rental/:id', function (req, res) {
+    Rental.findByIdAndRemove(
+        { _id: req.params.id },
+        function (err, data) {
+            if (err) {
+                console.log('delete error: ', err);
+
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(200);
+            }
+        }
+    );
+});
+
+router.delete('/listing/:id', function (req, res) {
+    Listing.findByIdAndRemove(
+        { _id: req.params.id },
+        function (err, data) {
+            if (err) {
+                console.log('delete error: ', err);
+
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(200);
+            }
+        }
+    );
 });
 
 module.exports = router;

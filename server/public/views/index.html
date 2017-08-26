@@ -9,103 +9,127 @@
     <script type="text/javascript" src="/scripts/services/estate.service.js"></script>"
     <link rel="stylesheet" href="/vendors/bootstrap.css" />
 </head>
+<style>
+    #background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://pre07.deviantart.net/0426/th/pre/f/2017/135/8/b/tokyo_street_sunset_by_arsenixc-db9abol.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100%;
+        opacity: 0.8;
+    }
+</style>
 
 <body ng-app="RealEstateApp" ng-controller="RealEstateController as vm">
-    <h2>Real Estate Listings</h2>
-    <h3>New Listing</h3>
-    <section class="container">
-        <h1></h1>
-        <form class="col-md-12" ng-submit="vm.addListing()">
-            <div class="form-group col-md-6">
-                <label for="cost">Cost</label>
-                <input type="number" class="form-control" ng-model="vm.newListing.cost" placeholder="Cost" />
-            </div>
-            <div class="form-group col-md-6">
-                <label for="sqft">Square Feet</label>
-                <input type="number" class="form-control" ng-model="vm.newListing.sqft" placeholder="Square Feet" />
-            </div>
-            <div class="form-group col-md-6">
-                <label for="city">City</label>
-                <input type="text" class="form-control" ng-model="vm.newListing.city" placeholder="City" />
-            </div>
-            <div class="col-md-2">
-                <input class="btn btn-primary" type="submit" value="submit">
-            </div>
-        </form>
+    <div id="background"></div>
+    <section>
+        
+        <section class="container">
+            <h1></h1>
+            <form class="col-md-12" ng-submit="vm.addListing()">
+                    <h2>Real Estate Listings</h2>
+                    <h3>New Listing</h3>
+                <div class="form-group col-md-6">
+                    <label for="cost">Cost</label>
+                    <input type="number" class="form-control" ng-model="vm.newListing.cost" placeholder="Cost" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="sqft">Square Feet</label>
+                    <input type="number" class="form-control" ng-model="vm.newListing.sqft" placeholder="Square Feet" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" ng-model="vm.newListing.city" placeholder="City" />
+                </div>
+                <div class="col-md-2">
+                    <input class="btn btn-primary" type="submit" value="submit">
+                </div>
+            </form>
+            <hr>
+        </section>
+
+
+
         <hr>
-    </section>
+        
+        <section class="container">
+            <h1></h1>
+            <form class="col-md-12" ng-submit="vm.addRental()">
+                    <h3>New Rental</h3>
+                <div class="form-group col-md-6">
+                    <label for="rent">Cost</label>
+                    <input type="text" class="form-control" ng-model="vm.newRental.rent" placeholder="Rent" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="sqft">Square Feet</label>
+                    <input type="text" class="form-control" ng-model="vm.newRental.sqft" placeholder="Square Feet" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" ng-model="vm.newRental.city" placeholder="City" />
+                </div>
+                <div class="col-md-2">
+                    <input class="btn btn-primary" type="submit" value="submit">
+                </div>
+            </form>
+            <hr>
+        </section>
 
-
-
-    <hr>
-    <h3>New Rental</h3>
-    <section class="container">
-        <h1></h1>
-        <form class="col-md-12" ng-submit="vm.addRental()">
-            <div class="form-group col-md-6">
-                <label for="rent">Cost</label>
-                <input type="text" class="form-control" ng-model="vm.newRental.rent" placeholder="Rent" />
-            </div>
-            <div class="form-group col-md-6">
-                <label for="sqft">Square Feet</label>
-                <input type="text" class="form-control" ng-model="vm.newRental.sqft" placeholder="Square Feet" />
-            </div>
-            <div class="form-group col-md-6">
-                <label for="city">City</label>
-                <input type="text" class="form-control" ng-model="vm.newRental.city" placeholder="City" />
-            </div>
-            <div class="col-md-2">
-                <input class="btn btn-primary" type="submit" value="submit">
-            </div>
-        </form>
         <hr>
-    </section>
+        
+        <section class="row">
+            <div class="col-md-12 ">
+                    <h2>Rentals</h2>
+                <div ng-repeat="rental in vm.rentals.list" class="well col-md-3">
+                    <h3 ng-hide="vm.editRentalVisible[rental._id]">{{ $index + 1 }}. Rent: ${{ rental.rent | number}}</h3>
+                    <div ng-show="vm.editRentalVisible[rental._id]"><input type="number" ng-model="rental.rent" /></div>
+                    <div ng-hide="vm.editRentalVisible[rental._id]"><strong>Square Feet:</strong> {{ rental.sqft }} ft<sup>2</sup></div>
+                    <div ng-show="vm.editRentalVisible[rental._id]"><input type="number" ng-model="rental.sqft" /></div>
+                    <div ng-hide="vm.editRentalVisible[rental._id]"><strong>City: </strong> {{ rental.city }}</div>
+                    <div ng-show="vm.editRentalVisible[rental._id]"><input type="text" ng-model="rental.city" /></div>
 
-    <hr>
-    <h2>Rentals</h2>
-    <section class="row">
-        <div class="col-md-12 ">
-            <div ng-repeat="rental in vm.rentals.list" class="well col-md-3">
-                <h3 ng-hide="vm.editRentalVisible[rental._id]">{{ $index + 1 }}. Rent: ${{ rental.rent | number}}</h3>
-                <div ng-show="vm.editRentalVisible[rental._id]"><input type="number" ng-model="rental.rent" /></div>
-                <div ng-hide="vm.editRentalVisible[rental._id]"><strong>Square Feet:</strong> {{ rental.sqft }} ft<sup>2</sup></div>
-                <div ng-show="vm.editRentalVisible[rental._id]"><input type="number" ng-model="rental.sqft" /></div>
-                <div ng-hide="vm.editRentalVisible[rental._id]"><strong>City: </strong> {{ rental.city }}</div>
-                <div ng-show="vm.editRentalVisible[rental._id]"><input type="text" ng-model="rental.city" /></div>
+                    <!-- Angular knows which 'person' object we mean when we click on the buttons -->
+                    <button ng-click="vm.editRental(rental)" class="btn btn-info">Edit</button>
+                    <button ng-click="vm.updateRental(rental)" class="btn btn-success">Update</button>
+                    <button ng-click="vm.deleteRental(rental)" class="btn btn-danger">Delete</button>
 
-                <!-- Angular knows which 'person' object we mean when we click on the buttons -->
-                <button ng-click="vm.editRental(rental)" class="btn btn-info">Edit</button>
-                <button ng-click="vm.updateRental(rental)" class="btn btn-success">Update</button>
-                <!-- <button ng-click="vm.deleteRental(rental._id)" class="btn btn-danger">Delete</button> -->
+                    <!-- <button ng-click="vm.deleteRental(rental._id)" class="btn btn-danger">Delete</button> -->
+                </div>
             </div>
-        </div>
-    </section>
-   
-    <hr>
-    <h2>Listings</h2>
-    <section class="row">
-        <div class="col-md-12 ">
-            <!-- modified from https://stackoverflow.com/questions/26459525/how-to-modify-and-update-data-table-row-in-angular-js -->
-            <div ng-repeat="listing in vm.listings.list" class="well col-md-3">
-                <h3 ng-hide="vm.editListingVisible[listing._id]">{{ $index + 1 }}. Cost: ${{ listing.cost | number}}</h3>
-                <div ng-show="vm.editListingVisible[listing._id]"><input type="number" ng-model="listing.cost" /></div>
-                <div ng-hide="vm.editListingVisible[listing._id]"><strong>Square Feet:</strong> {{ listing.sqft }} ft<sup>2</sup></div>
-                <div ng-show="vm.editListingVisible[listing._id]"><input type="number" ng-model="listing.sqft" /></div>
-                <div ng-hide="vm.editListingVisible[listing._id]"><strong>City: </strong> {{ listing.city }}</div>
-                <div ng-show="vm.editListingVisible[listing._id]"><input type="text" ng-model="listing.city" /></div>
+        </section>
 
-                <!-- <h3 class="text-primary">{{ $index + 1 }}. Cost: ${{listing.cost | number}}</h3>
+        <hr>
+        
+        <section class="row">
+            <div class="col-md-12 ">
+                    <h2>Listings</h2>
+                <!-- modified from https://stackoverflow.com/questions/26459525/how-to-modify-and-update-data-table-row-in-angular-js -->
+                <div ng-repeat="listing in vm.listings.list" class="well col-md-3">
+                    <h3 ng-hide="vm.editListingVisible[listing._id]">{{ $index + 1 }}. Cost: ${{ listing.cost | number}}</h3>
+                    <div ng-show="vm.editListingVisible[listing._id]"><input type="number" ng-model="listing.cost" /></div>
+                    <div ng-hide="vm.editListingVisible[listing._id]"><strong>Square Feet:</strong> {{ listing.sqft }} ft<sup>2</sup></div>
+                    <div ng-show="vm.editListingVisible[listing._id]"><input type="number" ng-model="listing.sqft" /></div>
+                    <div ng-hide="vm.editListingVisible[listing._id]"><strong>City: </strong> {{ listing.city }}</div>
+                    <div ng-show="vm.editListingVisible[listing._id]"><input type="text" ng-model="listing.city" /></div>
+
+                    <!-- <h3 class="text-primary">{{ $index + 1 }}. Cost: ${{listing.cost | number}}</h3>
                 <p><strong>Square Feet:</strong> {{listing.sqft}} ft<sup>2</sup></p>
                 <p><strong>City: </strong> {{listing.city}}</p>
  -->
-                <!-- Angular knows which 'person' object we mean when we click on the buttons -->
-                <button ng-click="vm.editListing(listing)" class="btn btn-info">Edit</button>
-                <button ng-click="vm.updateListing(listing)" class="btn btn-success">Update</button>
-                <!-- <button ng-click="vm.deleteRental(rental._id)" class="btn btn-danger">Delete</button> -->
+                    <!-- Angular knows which 'person' object we mean when we click on the buttons -->
+                    <button ng-click="vm.editListing(listing)" class="btn btn-info">Edit</button>
+                    <button ng-click="vm.updateListing(listing)" class="btn btn-success">Update</button>
+                    <button ng-click="vm.deleteListing(listing)" class="btn btn-danger">Delete</button>
+                    <!-- <button ng-click="vm.deleteRental(rental._id)" class="btn btn-danger">Delete</button> -->
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
+    </section>
 
 </body>
 

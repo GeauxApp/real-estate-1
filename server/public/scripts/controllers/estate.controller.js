@@ -23,5 +23,13 @@ app.controller('RealEstateController', ['EstateService', function (EstateService
     self.updateRental = function(rental) {
         EstateService.updateRental(rental);
     }
+
+    self.deleteListing = function(listing) {
+        EstateService.deleteListing(listing);
+    }
+
+    self.deleteRental = function(rental) {
+        EstateService.deleteRental(rental);
+    }
     
 }]);
