@@ -16,14 +16,14 @@
     <h3>New Listing</h3>
     <section class="container">
         <h1></h1>
-        <form class="col-md-12" ng-submit="vm.addProperty()">
+        <form class="col-md-12" ng-submit="vm.addListing()">
             <div class="form-group col-md-6">
                 <label for="cost">Cost</label>
-                <input type="text" class="form-control" ng-model="vm.newListing.cost" placeholder="Cost" />
+                <input type="number" class="form-control" ng-model="vm.newListing.cost" placeholder="Cost" />
             </div>
             <div class="form-group col-md-6">
                 <label for="sqft">Square Feet</label>
-                <input type="text" class="form-control" ng-model="vm.newListing.sqft" placeholder="Square Feet" />
+                <input type="number" class="form-control" ng-model="vm.newListing.sqft" placeholder="Square Feet" />
             </div>
             <div class="form-group col-md-6">
                 <label for="city">City</label>
@@ -42,7 +42,7 @@
     <h3>New Rental</h3>
     <section class="container">
         <h1></h1>
-        <form class="col-md-12" ng-submit="vm.addProperty()">
+        <form class="col-md-12" ng-submit="vm.addRental()">
             <div class="form-group col-md-6">
                 <label for="rent">Cost</label>
                 <input type="text" class="form-control" ng-model="vm.newRental.rent" placeholder="Rent" />
@@ -95,17 +95,7 @@
             </div>
         </div>
     </section>
-    <p>Listings</p>
-    <ul ng-repeat="listing in vm.listings">
-        <li>{{ listing }}</li>
-    </ul>
-    <p>Rentals</p>
-    <ul ng-repeat="rental in vm.rentals">
-        <li>{{ rental }}</li>
-    </ul>
-    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+
 
 </body>
 

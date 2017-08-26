@@ -33,8 +33,27 @@ router.get('/', function (req, res) {
             });
         }
     });
-
-
 });
 
-module.exports = router;
+router.post('/listing', function (req, res) {
+        console.log('new listing to store: ', req.body);
+
+        // use model/constructor to make a Mongoose Object
+        var newListing = new Listing(req.body);
+
+        // insert into our collection
+        newListing.save(function (err, data) {
+            console.log('saved listing to the collection: ', data);
+            if (err) {
+                console.log('save error: ', err);
+
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(201);
+            }
+
+        });
+    });
+
+
+    module.exports = router;
