@@ -22,3 +22,15 @@ schemaObject.rentalSchema = mongoose.model('Rentals', rentalSchema);
 
 // export our model
 module.exports = schemaObject;
+
+
+//The RIGHT WAY
+// var rentalSchema = new Schema({
+//     rent : { type: Number },
+//     sqft : { type: Number },
+//     city : { type: String },
+//     _v : { type: Number }
+// },
+// {
+//     collection: 'rentals';
+// });

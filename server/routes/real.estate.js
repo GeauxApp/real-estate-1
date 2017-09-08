@@ -1,11 +1,6 @@
 var express = require('express');
 var router = express.Router();
 // bring in our Mongoose model
-var Estate = require('../models/estate.schema.js');
-
-var express = require('express');
-var router = express.Router();
-// bring in our Mongoose model
 var schemas = require('../models/estate.schema.js');
 var Rental = schemas.rentalSchema;
 var Listing = schemas.listingSchema;
