@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/b-bly/real-estate-listings#readme",
   "dependencies": {
-    "angular-route": "^1.6.6"
+    "angular": "^1.6.6",
+    "angular-route": "^1.6.6",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.10"
   }
 }
