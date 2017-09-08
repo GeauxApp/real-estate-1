@@ -39,7 +39,7 @@ mongoose.connect(databaseURI);
 
 // optional, but very nice
 mongoose.connection.on('connected', function() {
-    console.log('mongoose connected to : ', databaseUrl);    
+    //console.log('mongoose connected to : ', databaseUrl);    
 });
 mongoose.connection.on('error', function (err) {
     console.log('mongoose connection error to : ', err);
